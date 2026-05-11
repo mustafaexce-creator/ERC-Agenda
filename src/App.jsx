@@ -1,13 +1,18 @@
 import React, { useState, useMemo } from 'react';
-import { 
-  Search, Calendar, HeartHandshake, Stethoscope, 
-  Globe, Flag, AlertTriangle, Users, Activity, 
+import {
+  Search, Calendar, HeartHandshake, Stethoscope,
+  Globe, Flag, AlertTriangle, Users, Activity,
   Baby, ShieldAlert, Droplets, HeartPulse
 } from 'lucide-react';
 import logo from './assets/logo.png';
 
 // --- البيانات المجمعة للأجندة ---
 const eventsData = [
+  { id: 101, day: '7', month: 'يناير', monthNum: 1, weekday: 'الأربعاء', title: 'عيد الميلاد المجيد', category: 'وطني', icon: HeartHandshake },
+  { id: 102, day: '19', month: 'يناير', monthNum: 1, weekday: 'الإثنين', title: 'عيد الغطاس المجيد', category: 'ديني', icon: Droplets },
+  { id: 103, day: '12', month: 'أبريل', monthNum: 4, weekday: 'الأحد', title: 'عيد القيامة المجيد', category: 'وطني', icon: HeartHandshake },
+  { id: 104, day: '13', month: 'أبريل', monthNum: 4, weekday: 'الإثنين', title: 'شم النسيم', category: 'وطني', icon: Globe },
+  { id: 0, day: '27', month: 'مايو', monthNum: 5, weekday: 'الأربعاء', title: 'عيد الأضحى المبارك', category: 'وطني', icon: HeartHandshake },
   { id: 1, day: '31', month: 'مايو', monthNum: 5, weekday: 'الأحد', title: 'اليوم العالمي للامتناع عن التدخين', category: 'صحة', icon: Activity },
   { id: 2, day: '14', month: 'يونيو', monthNum: 6, weekday: 'الأحد', title: 'اليوم العالمي للمتبرعين بالدم', category: 'صحة', icon: Droplets },
   { id: 3, day: '28', month: 'يوليو', monthNum: 7, weekday: 'الثلاثاء', title: 'اليوم العالمي لالتهاب الكبد', category: 'صحة', icon: Activity },
@@ -15,7 +20,9 @@ const eventsData = [
   { id: 5, day: '1-7', month: 'أغسطس', monthNum: 8, weekday: 'السبت - الجمعة', title: 'الأسبوع العالمي للرضاعة الطبيعية', category: 'صحة', icon: Baby },
   { id: 6, day: '12', month: 'أغسطس', monthNum: 8, weekday: 'الأربعاء', title: 'اليوم العالمي للشباب', category: 'إنساني', icon: Users },
   { id: 7, day: '19', month: 'أغسطس', monthNum: 8, weekday: 'الأربعاء', title: 'اليوم العالمي للعمل الإنساني', category: 'إنساني', icon: HeartHandshake },
+  { id: 105, day: '22', month: 'أغسطس', monthNum: 8, weekday: 'السبت', title: 'عيد صعود جسد السيدة العذراء', category: 'ديني', icon: HeartHandshake },
   { id: 8, day: '5', month: 'سبتمبر', monthNum: 9, weekday: 'السبت', title: 'اليوم الدولي للعمل الخيري', category: 'إنساني', icon: HeartHandshake },
+  { id: 106, day: '11', month: 'سبتمبر', monthNum: 9, weekday: 'الجمعة', title: 'عيد النيروز (رأس السنة القبطية)', category: 'ديني', icon: Calendar },
   { id: 9, day: '12', month: 'سبتمبر', monthNum: 9, weekday: 'السبت', title: 'اليوم العالمي للإسعافات الأولية', category: 'إسعافات', icon: Stethoscope },
   { id: 10, day: '17', month: 'سبتمبر', monthNum: 9, weekday: 'الخميس', title: 'اليوم العالمي لسلامة المرضى', category: 'صحة', icon: ShieldAlert },
   { id: 11, day: '21', month: 'سبتمبر', monthNum: 9, weekday: 'الإثنين', title: 'اليوم الدولي للسلام', category: 'إنساني', icon: Globe },
@@ -28,6 +35,7 @@ const eventsData = [
   { id: 18, day: '20', month: 'أكتوبر', monthNum: 10, weekday: 'الثلاثاء', title: 'اليوم العالمي لهشاشة العظام', category: 'صحة', icon: Activity },
   { id: 19, day: '24', month: 'أكتوبر', monthNum: 10, weekday: 'السبت', title: 'اليوم العالمي لشلل الأطفال', category: 'صحة', icon: Baby },
   { id: 20, day: '28', month: 'أكتوبر', monthNum: 10, weekday: 'الأربعاء', title: 'ذكرى تأسيس الهلال الأحمر المصري', category: 'وطني', icon: Flag },
+  { id: 21, day: '11', month: 'نوفمبر', monthNum: 11, weekday: 'الأربعاء', title: 'اليوم العالمي لأحمد غانم', category: 'خاص', icon: Calendar },
   { id: 22, day: '14', month: 'نوفمبر', monthNum: 11, weekday: 'السبت', title: 'اليوم العالمي للسكري', category: 'صحة', icon: Activity },
   { id: 23, day: '20', month: 'نوفمبر', monthNum: 11, weekday: 'الجمعة', title: 'اليوم العالمي للطفل', category: 'إنساني', icon: Baby },
   { id: 24, day: '1', month: 'ديسمبر', monthNum: 12, weekday: 'الثلاثاء', title: 'اليوم العالمي للإيدز', category: 'صحة', icon: Activity },
@@ -40,7 +48,7 @@ const eventsData = [
   { id: 31, day: '20', month: 'ديسمبر', monthNum: 12, weekday: 'الأحد', title: 'اليوم الدولي للتضامن الإنساني', category: 'إنساني', icon: HeartHandshake },
 ];
 
-const months = ['الكل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+const months = ['الكل', 'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -49,8 +57,8 @@ export default function App() {
   // فلترة البيانات بناءً على البحث والشهر المختار
   const filteredEvents = useMemo(() => {
     return eventsData.filter((event) => {
-      const matchesSearch = event.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                            event.category.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesSearch = event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        event.category.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesMonth = selectedMonth === 'الكل' || event.month === selectedMonth;
       return matchesSearch && matchesMonth;
     });
@@ -59,7 +67,8 @@ export default function App() {
   return (
     <div dir="rtl" className="min-h-screen bg-[#f8f9fa] font-sans text-gray-800 selection:bg-red-200 selection:text-red-900">
       {/* استيراد خط القاهرة من جوجل */}
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
         body { font-family: 'Cairo', sans-serif; }
         .erc-red { background-color: #cd000b; }
@@ -80,7 +89,7 @@ export default function App() {
       <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            
+
             {/* الشعار والعنوان */}
             <div className="flex items-center gap-3">
               <div className="w-16 h-16 flex items-center justify-center">
@@ -110,18 +119,17 @@ export default function App() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
+
         {/* فلاتر الأشهر */}
         <div className="flex overflow-x-auto pb-4 mb-6 gap-2 hide-scrollbar">
           {months.map((month) => (
             <button
               key={month}
               onClick={() => setSelectedMonth(month)}
-              className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm ${
-                selectedMonth === month
-                  ? 'erc-red text-white shadow-md shadow-red-200 scale-105'
-                  : 'bg-white text-gray-600 hover:bg-red-50 hover:text-erc-red border border-gray-200'
-              }`}
+              className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm ${selectedMonth === month
+                ? 'erc-red text-white shadow-md shadow-red-200 scale-105'
+                : 'bg-white text-gray-600 hover:bg-red-50 hover:text-erc-red border border-gray-200'
+                }`}
             >
               {month}
             </button>
@@ -134,14 +142,14 @@ export default function App() {
             filteredEvents.map((event, index) => {
               const Icon = event.icon;
               return (
-                <div 
+                <div
                   key={event.id}
                   className="bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group animate-fade-up relative overflow-hidden"
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   {/* شريط جانبي أحمر يظهر عند الهوفر */}
                   <div className="absolute top-0 right-0 h-full w-1.5 erc-red transform origin-right scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-out"></div>
-                  
+
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex flex-col items-center justify-center bg-red-50 rounded-xl p-3 min-w-[70px] border border-red-100 group-hover:border-red-200 transition-colors">
                       <span className="text-erc-red text-2xl font-black leading-none">{event.day}</span>
@@ -175,7 +183,7 @@ export default function App() {
               <Calendar size={64} className="mb-4 text-gray-300" strokeWidth={1} />
               <h2 className="text-2xl font-bold text-gray-500 mb-2">لا توجد نتائج</h2>
               <p>لم نتمكن من العثور على أي أيام تتطابق مع بحثك.</p>
-              <button 
+              <button
                 onClick={() => { setSearchTerm(''); setSelectedMonth('الكل'); }}
                 className="mt-6 px-6 py-2 bg-white border border-gray-300 rounded-full text-gray-700 font-bold hover:bg-gray-50 transition-colors"
               >
