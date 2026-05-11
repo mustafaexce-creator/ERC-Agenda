@@ -4,6 +4,7 @@ import {
   Globe, Flag, AlertTriangle, Users, Activity, 
   Baby, ShieldAlert, Droplets, HeartPulse
 } from 'lucide-react';
+import logo from './assets/logo.png';
 
 // --- البيانات المجمعة للأجندة ---
 const eventsData = [
@@ -83,11 +84,8 @@ export default function App() {
             
             {/* الشعار والعنوان */}
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full erc-red flex items-center justify-center shadow-lg shadow-red-200">
-                {/* رسم هلال مبسط بـ SVG */}
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                </svg>
+              <div className="w-16 h-16 flex items-center justify-center">
+                <img src={logo} alt="ERC Logo" className="w-full h-full object-contain drop-shadow-md" />
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900 leading-tight">الأجندة التفاعلية</h1>
