@@ -59,7 +59,7 @@ export default function App() {
   return (
     <div dir="rtl" className="min-h-screen bg-[#f8f9fa] font-sans text-gray-800 selection:bg-red-200 selection:text-red-900">
       {/* استيراد خط القاهرة من جوجل */}
-      <style dangerouslySetInnerHTML={{__html: \`
+      <style dangerouslySetInnerHTML={{__html: `
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
         body { font-family: 'Cairo', sans-serif; }
         .erc-red { background-color: #cd000b; }
@@ -74,7 +74,7 @@ export default function App() {
         .animate-fade-up {
           animation: fadeUp 0.5s ease-out forwards;
         }
-      \`}} />
+      `}} />
 
       {/* Header Section */}
       <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
@@ -120,11 +120,11 @@ export default function App() {
             <button
               key={month}
               onClick={() => setSelectedMonth(month)}
-              className={\`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm \${
+              className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm ${
                 selectedMonth === month
                   ? 'erc-red text-white shadow-md shadow-red-200 scale-105'
                   : 'bg-white text-gray-600 hover:bg-red-50 hover:text-erc-red border border-gray-200'
-              }\`}
+              }`}
             >
               {month}
             </button>
@@ -140,7 +140,7 @@ export default function App() {
                 <div 
                   key={event.id}
                   className="bg-white rounded-2xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group animate-fade-up relative overflow-hidden"
-                  style={{ animationDelay: \`\${index * 0.05}s\` }}
+                  style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   {/* شريط جانبي أحمر يظهر عند الهوفر */}
                   <div className="absolute top-0 right-0 h-full w-1.5 erc-red transform origin-right scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-out"></div>
