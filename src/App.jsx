@@ -28,7 +28,6 @@ const eventsData = [
   { id: 18, day: '20', month: 'أكتوبر', monthNum: 10, weekday: 'الثلاثاء', title: 'اليوم العالمي لهشاشة العظام', category: 'صحة', icon: Activity },
   { id: 19, day: '24', month: 'أكتوبر', monthNum: 10, weekday: 'السبت', title: 'اليوم العالمي لشلل الأطفال', category: 'صحة', icon: Baby },
   { id: 20, day: '28', month: 'أكتوبر', monthNum: 10, weekday: 'الأربعاء', title: 'ذكرى تأسيس الهلال الأحمر المصري', category: 'وطني', icon: Flag },
-  { id: 21, day: '11', month: 'نوفمبر', monthNum: 11, weekday: 'الأربعاء', title: 'اليوم العالمي لأحمد غانم', category: 'خاص', icon: Calendar },
   { id: 22, day: '14', month: 'نوفمبر', monthNum: 11, weekday: 'السبت', title: 'اليوم العالمي للسكري', category: 'صحة', icon: Activity },
   { id: 23, day: '20', month: 'نوفمبر', monthNum: 11, weekday: 'الجمعة', title: 'اليوم العالمي للطفل', category: 'إنساني', icon: Baby },
   { id: 24, day: '1', month: 'ديسمبر', monthNum: 12, weekday: 'الثلاثاء', title: 'اليوم العالمي للإيدز', category: 'صحة', icon: Activity },
@@ -80,7 +79,7 @@ export default function App() {
       {/* Header Section */}
       <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             
             {/* الشعار والعنوان */}
             <div className="flex items-center gap-3">
@@ -89,7 +88,7 @@ export default function App() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-gray-900 leading-tight">الأجندة التفاعلية</h1>
-                <p className="text-sm text-gray-500 font-semibold">الهلال الأحمر المصري • 2026</p>
+                <p className="text-sm text-gray-500 font-semibold">الهلال الأحمر المصري بالمنوفية • 2026</p>
               </div>
             </div>
 
