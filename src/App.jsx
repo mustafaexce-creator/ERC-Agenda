@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import {
-  Search, Calendar, HeartHandshake, Stethoscope,
-  Globe, Flag, AlertTriangle, Users, Activity,
-  Baby, ShieldAlert, Droplets, HeartPulse
+  Search, Calendar, HeartHandshake, Stethoscope, 
+  Globe, Flag, AlertTriangle, Users, Activity, 
+  Baby, ShieldAlert, Droplets, HeartPulse, Trophy
 } from 'lucide-react';
 import logo from './assets/logo.png';
 
